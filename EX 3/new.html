@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ONLINE SHOPPING</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('fixedimage.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+    }
+
+    .products {
+      
+      margin-right: 20px;
+    }
+
+    .product-image {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .offers {
+      flex-grow: 1;
+      margin-left: 20px;
+    }
+
+    .offers table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .offers table td {
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+
+    .downloa {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+      z-index: 999;
+    }
+
+    .personal-details {
+      border: 2px solid #ccc;
+      padding: 20px;
+      max-width: 300px;
+    }
+
+    .personal-details input {
+      width: calc(100% - 20px);
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .personal-details textarea {
+      width: calc(100% - 20px);
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .moving-image{
+          position:absolute;
+          top:50%;
+          left:50%;
+          transform:translate(-50%,-50%);
+          animation:moveImage 5s linear infinite;
+      }
+      @keyframes moveImage {
+      0% { transform: translate(-50%, -50%); }
+      50% { transform: translate(-50%, -50%) rotate(90deg); }
+      100% { transform: translate(-50%, -50%); }
+      }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="products">
+      <h2>Products</h2>
+      <div class="product-image">
+          <h3>SHOES</h3>
+        <img src="shoes.jpg" alt="Shoes">
+      </div>
+      <div class="product-image">
+          <h4>DRESSES</h4>
+        <img src="dresses.jpg" alt="Dresses">
+      </div>
+      <div class="product-image">
+          <h5><b>ELECTRONICS</h5></b>
+        <img src="electronics.jpg" alt="Electronics">
+      </div>
+    </div>
+    <div class="offers">
+      <h2>Offers</h2>
+      <table>
+        <tr>
+          <td><img src="offers1.jpg" alt="Offer 1"></td>
+          <td><img src="offers2.jpg" alt="Offer 2"></td>
+        </tr>
+        <tr>
+          <td><img src="offers3.jpg" alt="Offer 3"></td>
+          <td><img src="offers4.jpg" alt="Offer 4"></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="downloa">
+    <a href="#personal-details"><img src="downloa.jpg" alt="Fixed Image"></a>
+  </div>
+  <div id="personal-details" class="personal-details">
+    <h2>Personal Details</h2>
+    <form action="#">
+      <input type="text" name="fullname" placeholder="Full Name" required><br>
+      <input type="text" name="address" placeholder="Address" required><br>
+      <textarea name="preferences" placeholder="Personal Preferences"></textarea><br>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</body>
+</html>
+
