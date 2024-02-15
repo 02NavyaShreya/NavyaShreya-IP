@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amazon</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+      body{
+          background-image:url("bg1.jpg");
+          background-size:cover;
+          background-repeat:no repeat;
+      }
+      .moving-image{
+          position:absolute;
+          top:50%;
+          left:50%;
+          transform:translate(-50%,-50%);
+          animation:moveImage 5s linear infinite;
+      }
+      @keyframes moveImage {
+      0% { transform: translate(-50%, -50%); }
+      50% { transform: translate(-50%, -50%) rotate(90deg); }
+      100% { transform: translate(-50%, -50%); }
+    }
+  </style>
+</head>
+<body>
+    <center><b><h1>AMAZON</h1></b></center>
+    <center><b><p> ALL IN ONE PLACE</p></b></center>
+        <img src="images.png" alt="Moving Image" class="moving-image">
+  <header>
+    <div class="container">
+      <div class="logo">
+        <img src="download.png" alt="Amazon Logo">
+      </div>
+      <div class="login">
+        <a href="#">Login</a> / <a href="#signup.html">Sign Up</a>
+      </div>
+    </div>
+  </header>
+  <section class="description">
+    <div class="container">
+        
+  </section>
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Amazon. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
+
