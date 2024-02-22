@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capitalizer</title>
+</head>
+<body>
+    <h1>Capitalizer</h1>
+    <label for="inputString">Enter a string:</label>
+    <input type="text" id="inputString">
+    <button onclick="capitalizeFirstLetter()">Capitalize</button>
+    <div id="result"></div>
+
+    <script>
+        function capitalizeFirstLetter() {
+            const inputString = document.getElementById("inputString").value.trim();
+            const resultDiv = document.getElementById("result");
+
+            // Check if the input string is empty
+            if (inputString === "") {
+                resultDiv.textContent = "Please enter a string.";
+                return;
+            }
+
+            // Capitalize the first letter
+            const capitalizedString = inputString.charAt(0).toUpperCase() + inputString.slice(1);
+            resultDiv.textContent = `Capitalized string: ${capitalizedString}`;
+        }
+    </script>
+</body>
+</html>
