@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sum, Product, and Coin Converter</title>
+</head>
+<body>
+    <h1>Sum, Product, and Coin Converter</h1>
+    <label for="numberArray">Enter an array of integers:</label>
+    <input type="text" id="numberArray">
+    <br>
+    <label for="amount">Enter an amount:</label>
+    <input type="text" id="amount">
+    <br>
+    <button onclick="computeAndConvert()">Compute & Convert</button>
+    <div id="result"></div>
+
+    <script>
+        function computeAndConvert() {
+            const numberArrayStr = document.getElementById("numberArray").value.trim();
+            const amountStr = document.getElementById("amount").value.trim();
+            const resultDiv = document.getElementById("result");
+
+            // Parse the input strings into arrays of integers
+            const numbers = numberArrayStr.split(',').map(Number);
+            const amount = parseInt(amountStr);
+
+            // Compute the sum and product of the array
+            const sum = numbers.reduce((acc, cur) => acc + cur, 0);
+            const product = numbers.reduce((acc, cur) => acc * cur, 1);
+
+            // Convert the amount to coins using given coin denominations
+            const coinDenominations = [25, 10, 5, 2, 1];
+            let remainingAmount = amount;
+            let coins = [];
+
+            for (let i = 0; i < coinDenominations.length; i++) {
+                const coin = coinDenominations[i];
+
+                while (remainingAmount >= coin) {
+                    coins.push(coin);
+                    remainingAmount -= coin;
+                }
+            }
+
+            // Display the results
+            resultDiv.innerHTML = `
+                <p>Sum of the array: ${sum}</p>
+                <p>Product of the array: ${product}</p>
+                <p>Amount converted to coins: ${coins.join(', ')}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
