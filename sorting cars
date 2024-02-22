@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Display</title>
+</head>
+<body>
+    <h1>Cars ordered by price</h1>
+    <ul id="carList"></ul>
+
+    <script>
+        class Car {
+            constructor(brand, model, price) {
+                this.brand = brand;
+                this.model = model;
+                this.price = price;
+            }
+        }
+
+        // Function to sort cars by price
+        function sortCarsByPrice(cars) {
+            return cars.sort((a, b) => a.price - b.price);
+        }
+
+        // Function to display cars
+        function displayCars(cars) {
+            const carList = document.getElementById("carList");
+            carList.innerHTML = ""; // Clear previous list items
+            cars.forEach(car => {
+                const listItem = document.createElement("li");
+                listItem.textContent = `${car.brand} ${car.model} - $${car.price}`;
+                carList.appendChild(listItem);
+            });
+        }
+
+        // Creating car objects
+        const car1 = new Car("Toyota", "Corolla", 25000);
+        const car2 = new Car("Honda", "Civic", 22000);
+        const car3 = new Car("Ford", "Fusion", 27000);
+        const car4 = new Car("Chevrolet", "Malibu", 30000);
+        const car5 = new Car("Hyundai", "Elantra", 20000);
+
+        // List of car objects
+        const cars = [car1, car2, car3, car4, car5];
+
+        // Sorting cars by price
+        const sortedCars = sortCarsByPrice(cars);
+
+        // Displaying sorted cars
+        displayCars(sortedCars);
+    </script>
+</body>
+</html>
