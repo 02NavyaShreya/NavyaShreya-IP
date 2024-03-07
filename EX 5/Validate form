@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test JavaScript Form Validation</title>
+<script>
+function validateForm() {
+  var name = document.forms["myForm"]["name"].value;
+  var address = document.forms["myForm"]["address"].value;
+  var zipCode = document.forms["myForm"]["zipCode"].value;
+  var county = document.forms["myForm"]["county"].value;
+  var gender = document.forms["myForm"]["gender"].value;
+  var preferences = document.forms["myForm"]["preferences"].value;
+  var phone = document.forms["myForm"]["phone"].value;
+  var email = document.forms["myForm"]["email"].value;
+  var password = document.forms["myForm"]["password"].value;
+  var verifyPassword = document.forms["myForm"]["verifyPassword"].value;
+
+  if (name == "") {
+    alert("Name must be filled out");
+    return false;
+  }
+  if (address == "") {
+    alert("Address must be filled out");
+    return false;
+  }
+  if (zipCode == "") {
+    alert("Zip Code must be filled out");
+    return false;
+  }
+  if (county == "") {
+    alert("County must be filled out");
+    return false;
+  }
+  if (gender == "") {
+    alert("Gender must be selected");
+    return false;
+  }
+  if (preferences == "") {
+    alert("Preferences must be selected");
+    return false;
+  }
+  if (phone == "") {
+    alert("Phone number must be filled out");
+    return false;
+  }
+  // Add your regular expression for phone number validation here
+
+  if (email == "") {
+    alert("Email must be filled out");
+    return false;
+  }
+  // Add your regular expression for email validation here
+
+  if (password == "") {
+    alert("Password must be filled out");
+    return false;
+  }
+  if (password.length < 6 || password.length > 8) {
+    alert("Password must be between 6 and 8 characters");
+    return false;
+  }
+  if (password != verifyPassword) {
+    alert("Passwords do not match");
+    return false;
+  }
+
+  return true;
+}
+</script>
+</head>
+<body>
+
+<h2>Test JavaScript Form Validation</h2>
+
+<form name="myForm" onsubmit="return validateForm()">
+  Name: <input type="text" name="name"><br>
+  Address: <textarea name="address"></textarea><br>
+  Zip Code: <input type="text" name="zipCode"><br>
+  County:
+  <select name="county">
+    <option value="">Select County</option>
+    <option value="county1">County 1</option>
+    <option value="county2">County 2</option>
+    <option value="county3">County 3</option>
+  </select><br>
+  Gender:
+  <input type="radio" name="gender" value="male"> Male
+  <input type="radio" name="gender" value="female"> Female<br>
+  Preferences:
+  <input type="radio" name="preferences" value="red"> Red
+  <input type="radio" name="preferences" value="blue"> Blue
+  <input type="radio" name="preferences" value="green"> Green<br>
+  Phone Number: <input type="text" name="phone"><br>
+  Email: <input type="text" name="email"><br>
+  Password: <input type="password" name="password"><br>
+  Verify Password: <input type="password" name="verifyPassword"><br>
+  <input type="submit" value="Submit">
+  <input type="reset" value="Clear">
+</form>
+
+</body>
+</html>
