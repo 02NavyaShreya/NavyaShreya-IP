@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Word Occurrence Finder</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <input type="text" id="sentence" placeholder="Enter a sentence">
+  <input type="text" id="word" placeholder="Enter a word">
+  <button id="find-occurrence-btn">Find Occurrence</button>
+  <p id="occurrence-result"></p>
+
+  <script>
+    $(document).ready(function() {
+      $('#find-occurrence-btn').click(function() {
+        var sentence = $('#sentence').val();
+        var word = $('#word').val();
+        var regex = new RegExp('\\b' + word + '\\b', 'gi');
+        var count = (sentence.match(regex) || []).length;
+        $('#occurrence-result').text('Occurrences of "' + word + '" in the sentence: ' + count);
+      });
+    });
+  </script>
+</body>
+</html>
