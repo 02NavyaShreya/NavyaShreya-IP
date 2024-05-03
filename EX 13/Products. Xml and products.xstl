@@ -1,0 +1,122 @@
+Products.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<products>
+
+    <product>
+
+        <name>Laptop</name>
+
+        <category>Electronics</category>
+
+        <price>1200</price>
+
+        <available>yes</available>
+
+    </product>
+
+    <product>
+
+        <name>Headphones</name>
+
+        <category>Electronics</category>
+
+        <price>80</price>
+
+        <available>yes</available>
+
+    </product>
+
+    <product>
+
+        <name>T-shirt</name>
+
+        <category>Clothing</category>
+
+        <price>25</price>
+
+        <available>no</available>
+
+    </product>
+
+</products>
+
+ 
+
+ 
+
+Products.xsl:
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+    <xsl:template match="/">
+
+        <html>
+
+            <head>
+
+                <title>Product Information</title>
+
+            </head>
+
+            <body>
+
+                <h1>Product Information</h1>
+
+                <table border="1">
+
+                    <tr>
+
+                        <th>Name</th>
+
+                        <th>Price</th>
+
+                    </tr>
+
+                    <xsl:for-each select="products/product">
+
+                        <xsl:variable name="price" select="price" />
+
+                        <tr>
+
+                            <td><xsl:value-of select="name"/></td>
+
+                            <td>
+
+                                <xsl:choose>
+
+                                    <xsl:when test="$price &gt; 50">
+
+                                        <xsl:attribute name="style">color: red;</xsl:attribute>
+
+                                    </xsl:when>
+
+                                    <xsl:otherwise>
+
+                                        <xsl:attribute name="style">color: black;</xsl:attribute>
+
+                                    </xsl:otherwise>
+
+                                </xsl:choose>
+
+                                <xsl:value-of select="price"/>
+
+                            </td>
+
+                        </tr>
+
+                    </xsl:for-each>
+
+                </table>
+
+            </body>
+
+        </html>
+
+    </xsl:template>
+
+</xsl:stylesheet>
+
