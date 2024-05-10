@@ -1,0 +1,74 @@
+import javax.ws.rs.*;
+import javax.ws.rs.core.*;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Path("/order")
+public class OrderService {
+    
+    // JDBC Connection Parameters
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/your_database";
+    private static final String JDBC_USER = "your_username";
+    private static final String JDBC_PASSWORD = "your_password";
+    
+    // Endpoint to place an order
+    @POST
+    @Path("/place")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response placeOrder(Order order) {
+        try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
+            // Insert order into the database
+            String insertOrderQuery = "INSERT INTO orders (order_id, product_id, quantity) VALUES (?, ?, ?)";
+            PreparedStatement statement = conn.prepareStatement(insertOrderQuery);
+            for (Product product : order.getProducts()) {
+                statement.setInt(1, order.getOrderId());
+                statement.setInt(2, product.getProductId());
+                statement.setInt(3, product.getQuantity());
+                statement.addBatch();
+            }
+            statement.executeBatch();
+            return Response.status(Response.Status.CREATED).build();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+    
+    // Endpoint to update an order
+    @PUT
+    @Path("/update")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateOrder(Order order) {
+        try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
+            // Update order in the database
+            String updateOrderQuery = "UPDATE orders SET quantity = ? WHERE order_id = ? AND product_id = ?";
+            PreparedStatement statement = conn.prepareStatement(updateOrderQuery);
+            for (Product product : order.getProducts()) {
+                statement.setInt(1, product.getQuantity());
+                statement.setInt(2, order.getOrderId());
+                statement.setInt(3, product.getProductId());
+                statement.addBatch();
+            }
+            statement.executeBatch();
+            return Response.status(Response.Status.OK).build();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+}
+
+class Order {
+    private int orderId;
+    private List<Product> products;
+    
+    // Getters and setters
+}
+
+class Product {
+    private int productId;
+    private int quantity;
+    
+    // Getters and setters
+}
