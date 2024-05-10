@@ -1,0 +1,51 @@
+import javax.ws.rs.client.*;
+import javax.ws.rs.core.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class OrderClient {
+    
+    private static final String BASE_URL = "http://localhost:8080/your-app-context";
+    
+    public static void main(String[] args) {
+        Client client = ClientBuilder.newClient();
+        
+        // Place an order
+        Order order = new Order();
+        order.setOrderId(1);
+        List<Product> products = new ArrayList<>();
+        Product product1 = new Product();
+        product1.setProductId(1);
+        product1.setQuantity(5);
+        products.add(product1);
+        Product product2 = new Product();
+        product2.setProductId(2);
+        product2.setQuantity(3);
+        products.add(product2);
+        order.setProducts(products);
+        
+        WebTarget target = client.target(BASE_URL).path("/order/place");
+        Response response = target.request(MediaType.APPLICATION_JSON)
+                                  .post(Entity.entity(order, MediaType.APPLICATION_JSON));
+        
+        if (response.getStatus() == Response.Status.CREATED.getStatusCode()) {
+            System.out.println("Order placed successfully.");
+        } else {
+            System.out.println("Failed to place order.");
+        }
+        
+        // Update an order
+        order.getProducts().get(0).setQuantity(10); // Update quantity of the first product
+        
+        WebTarget updateTarget = client.target(BASE_URL).path("/order/update");
+        Response updateResponse = updateTarget.request(MediaType.APPLICATION_JSON)
+                                             .put(Entity.entity(order, MediaType.APPLICATION_JSON));
+        
+        if (updateResponse.getStatus() == Response.Status.OK.getStatusCode()) {
+            System.out.println("Order updated successfully.");
+        } else {
+            System.out.println("Failed to update order.");
+        }
+    }
+}
+
